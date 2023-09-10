@@ -36,4 +36,13 @@ fn main() {
     let _multiplication = 6 * 6;
     let _division = 20 / 4;
     let _remainder = 21 % 4;
+
+    // boolean type
+    let _true = true;
+    let _false = false;
+
+    //char type
+    let _c = 'Z';
+    let _space: char = ' ';
+    let _japanese: char = '人';
 }
