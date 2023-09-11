@@ -45,4 +45,12 @@ fn main() {
     let _c = 'Z';
     let _space: char = ' ';
     let _japanese: char = '人';
+
+    //tuple
+    let tuple = (500, 2.1, 1);
+
+    //deconstruct tuple
+    let (_value_1, _value_2, _value_3) = tuple;
+
+    println!("{}", _value_1);
 }
