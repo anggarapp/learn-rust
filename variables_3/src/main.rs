@@ -53,4 +53,8 @@ fn main() {
     let (_value_1, _value_2, _value_3) = tuple;
 
     println!("{}", _value_1);
+
+    // array
+    let _array = [1, 2, 3, 1, 2];
+    let _array_calling = _array[0];
 }
