@@ -6,7 +6,9 @@ fn main() {
     // _while_loop();
     // _break_out_six();
     // _skip_four();
-    _for_iter();
+    // _for_iter();
+    // _for_explicit();
+    _for_reverse_input();
 }
 
 fn _if_else() {
@@ -79,5 +81,17 @@ fn _for_iter() {
 
     for element in collection.iter() {
         println!("Element value is {}", element);
+    }
+}
+
+fn _for_explicit() {
+    for number in 1..5 {
+        println!("Number value is {}", number);
+    }
+}
+
+fn _for_reverse_input() {
+    for number in (1..=5).rev() {
+        println!("Number value is {}", number);
     }
 }
