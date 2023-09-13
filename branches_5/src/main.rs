@@ -1,7 +1,8 @@
 fn main() {
     // _if_else();
     // _if_elseif_else();
-    _if_in_let();
+    // _if_in_let();
+    _mugen_loop();
 }
 
 fn _if_else() {
@@ -28,4 +29,10 @@ fn _if_in_let() {
     let condition = false;
     let number = if condition { 666 } else { 999 };
     println!("This is the number Kid! {}", number);
+}
+
+fn _mugen_loop() {
+    loop {
+        println!("Blue!");
+    }
 }
