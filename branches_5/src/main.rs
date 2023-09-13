@@ -5,7 +5,8 @@ fn main() {
     // _mugen_loop();
     // _while_loop();
     // _break_out_six();
-    _skip_four();
+    // _skip_four();
+    _for_iter();
 }
 
 fn _if_else() {
@@ -71,4 +72,12 @@ fn _skip_four() {
         println!("{}!", number);
     }
     println!("Where 4?");
+}
+
+fn _for_iter() {
+    let collection = [10, 20, 30, 40, 50];
+
+    for element in collection.iter() {
+        println!("Element value is {}", element);
+    }
 }
