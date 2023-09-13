@@ -3,7 +3,9 @@ fn main() {
     // _if_elseif_else();
     // _if_in_let();
     // _mugen_loop();
-    _while_loop();
+    // _while_loop();
+    // _break_out_six();
+    _skip_four();
 }
 
 fn _if_else() {
@@ -45,4 +47,28 @@ fn _while_loop() {
         number = number - 1;
     }
     println!("ARISE!");
+}
+
+fn _break_out_six() {
+    let mut number: i32 = 0;
+    while number != 10 {
+        println!("{}!", number);
+        if number == 6 {
+            break;
+        }
+        number = number + 1;
+    }
+    println!("Released!");
+}
+
+fn _skip_four() {
+    let mut number: i32 = 11;
+    while number != 0 {
+        number = number - 1;
+        if number == 4 {
+            continue;
+        }
+        println!("{}!", number);
+    }
+    println!("Where 4?");
 }
