@@ -2,7 +2,8 @@ fn main() {
     // _if_else();
     // _if_elseif_else();
     // _if_in_let();
-    _mugen_loop();
+    // _mugen_loop();
+    _while_loop();
 }
 
 fn _if_else() {
@@ -35,4 +36,13 @@ fn _mugen_loop() {
     loop {
         println!("Blue!");
     }
+}
+
+fn _while_loop() {
+    let mut number: i32 = 9;
+    while number != 0 {
+        println!("{}!", number);
+        number = number - 1;
+    }
+    println!("ARISE!");
 }
