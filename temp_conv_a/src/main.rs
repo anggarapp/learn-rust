@@ -53,6 +53,5 @@ fn main() {
             "The Result of {} to {} Conversion is : {} ",
             from, to, result
         );
-        // let guess: u32 = guess.trim().parse().expect("Type a Number kid");
     }
 }
