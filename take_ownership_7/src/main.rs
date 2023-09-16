@@ -6,6 +6,12 @@ fn main() {
     let i = 2;
     make_copy(i);
     println!("i just copied : {}", i);
+
+    let s1: String = give_ownership();
+    println!("got s1 ownership : {}", s1);
+
+    let s2: String = takes_and_gives_back(String::from("Okay"));
+    println!("got s2 ownership after giving ownership : {}", s2);
 }
 
 fn take_ownership(some_string: String) {
@@ -14,4 +20,12 @@ fn take_ownership(some_string: String) {
 
 fn make_copy(some_int: i32) {
     println!("some_int have copied : {}", some_int);
+}
+
+fn give_ownership() -> String {
+    String::from("Here!")
+}
+
+fn takes_and_gives_back(value: String) -> String {
+    value
 }
