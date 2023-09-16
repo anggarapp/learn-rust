@@ -12,6 +12,9 @@ fn main() {
 
     let s2: String = takes_and_gives_back(String::from("Okay"));
     println!("got s2 ownership after giving ownership : {}", s2);
+
+    let (s3, s3_len): (String, usize) = calculate_length(String::from("AYE"));
+    println!("the Length of {} is : {}", s3, s3_len);
 }
 
 fn take_ownership(some_string: String) {
@@ -28,4 +31,9 @@ fn give_ownership() -> String {
 
 fn takes_and_gives_back(value: String) -> String {
     value
+}
+
+fn calculate_length(s: String) -> (String, usize) {
+    let length = s.len();
+    (s, length)
 }
