@@ -1,6 +1,13 @@
+#[derive(Debug)]
 struct Rectangle {
     length: u32,
     width: u32,
+}
+
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.length * self.width
+    }
 }
 
 fn main() {
@@ -18,6 +25,7 @@ fn main() {
     );
     println!("Area based on tuple is {}", area_tuple(_rec_tuple));
     println!("Area based on struct is {}", area_struct(&_rec_struct));
+    println!("Area using method {}", _rec_struct.area());
 }
 
 fn area_ordinary(length: u32, width: u32) -> u32 {
