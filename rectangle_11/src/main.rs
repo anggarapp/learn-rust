@@ -10,6 +10,19 @@ impl Rectangle {
     }
 }
 
+struct Point {
+    x: f64,
+    y: f64,
+}
+
+impl Point {
+    fn distance(&self, other: &Point) -> f64 {
+        let x_shuared = f64::powi(other.x - self.x, 2);
+        let y_shuared = f64::powi(other.y - self.y, 2);
+        f64::sqrt(x_shuared + y_shuared)
+    }
+}
+
 fn main() {
     let _width_1 = 30;
     let _length_1 = 40;
@@ -26,6 +39,12 @@ fn main() {
     println!("Area based on tuple is {}", area_tuple(_rec_tuple));
     println!("Area based on struct is {}", area_struct(&_rec_struct));
     println!("Area using method {}", _rec_struct.area());
+
+    let point_1 = Point { x: 3.0, y: 2.0 };
+    let point_2 = Point { x: 6.0, y: 6.6 };
+
+    point_1.distance(&point_2);
+    (&point_1).distance(&point_2);
 }
 
 fn area_ordinary(length: u32, width: u32) -> u32 {
