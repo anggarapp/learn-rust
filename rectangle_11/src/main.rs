@@ -69,7 +69,7 @@ fn main() {
         "Can other_rectangle hold rectangle? {}",
         _other_rec_struct.can_hold(&_rec_struct)
     );
-// associated Function
+    // associated Function
     let _other_rectangle = Rectangle::square(5);
 }
 
