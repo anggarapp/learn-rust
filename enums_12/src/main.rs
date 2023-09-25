@@ -1,21 +1,10 @@
-enum IpAddrKind {
-    V4,
-    V6,
-}
-
-struct IpAddr {
-    kind: IpAddrKind,
-    address: String,
+enum IpAddr {
+    V4(u8, u8, u8, u8),
+    V6(String),
 }
 
 fn main() {
-    let home: IpAddr = IpAddr {
-        kind: IpAddrKind::V4,
-        address: String::from("0.0.0.0"),
-    };
+    let home: IpAddr = IpAddr::V4(0, 0, 0, 0);
 
-    let loopback: IpAddr = IpAddr {
-        kind: IpAddrKind::V6,
-        address: String::from("::1"),
-    };
+    let loopback: IpAddr = IpAddr::V6(String::from("::1"));
 }
