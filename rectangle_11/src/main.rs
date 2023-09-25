@@ -12,6 +12,13 @@ impl Rectangle {
     fn can_hold(&self, other: &Rectangle) -> bool {
         self.length > other.length && self.width > other.width
     }
+
+    fn square(size: u32) -> Rectangle {
+        Rectangle {
+            length: size,
+            width: size,
+        }
+    }
 }
 
 struct Point {
@@ -62,6 +69,8 @@ fn main() {
         "Can other_rectangle hold rectangle? {}",
         _other_rec_struct.can_hold(&_rec_struct)
     );
+// associated Function
+    let _other_rectangle = Rectangle::square(5);
 }
 
 fn area_ordinary(length: u32, width: u32) -> u32 {
