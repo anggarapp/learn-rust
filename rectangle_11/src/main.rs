@@ -8,6 +8,10 @@ impl Rectangle {
     fn area(&self) -> u32 {
         self.length * self.width
     }
+
+    fn can_hold(&self, other: &Rectangle) -> bool {
+        self.length > other.length && self.width > other.width
+    }
 }
 
 struct Point {
@@ -31,6 +35,10 @@ fn main() {
         length: 60,
         width: 11,
     };
+    let _other_rec_struct = Rectangle {
+        length: 20,
+        width: 4,
+    };
 
     println!(
         "Area based two of side is {}",
@@ -45,6 +53,15 @@ fn main() {
 
     point_1.distance(&point_2);
     (&point_1).distance(&point_2);
+
+    println!(
+        "Can rectangle hold other_rectangle? {}",
+        _rec_struct.can_hold(&_other_rec_struct)
+    );
+    println!(
+        "Can other_rectangle hold rectangle? {}",
+        _other_rec_struct.can_hold(&_rec_struct)
+    );
 }
 
 fn area_ordinary(length: u32, width: u32) -> u32 {
