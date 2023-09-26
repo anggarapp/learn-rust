@@ -32,11 +32,14 @@ enum Coin {
 
 fn main() {
     let _home: IpAddr = IpAddr::V4(0, 0, 0, 0);
-
     let _loopback: IpAddr = IpAddr::V6(String::from("::1"));
+
+    let _five = Some(5);
+    let _six = _plus_one(_five);
+    let _none = _plus_one(None);
 }
 
-fn value_in_cent(coin: Coin) -> i32 {
+fn _value_in_cent(coin: Coin) -> i32 {
     match coin {
         Coin::Dime => {
             println!("Lucky Penny");
@@ -48,5 +51,12 @@ fn value_in_cent(coin: Coin) -> i32 {
             println!("State Quarter From {:?}!", state);
             25
         }
+    }
+}
+
+fn _plus_one(x: Option<i32>) -> Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i + 1),
     }
 }
