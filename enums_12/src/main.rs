@@ -3,8 +3,42 @@ enum IpAddr {
     V6(String),
 }
 
-fn main() {
-    let home: IpAddr = IpAddr::V4(0, 0, 0, 0);
+// Struct QuitMessage;
+// Struct MoveMessage{
+//     x: i32,
+//     y: i32,
+// };
+// Struct WriteMessage(String);
+// Struct ChangeColorMessage(i32,i32,i32);
 
-    let loopback: IpAddr = IpAddr::V6(String::from("::1"));
+// enum Message {
+//     Quit,
+//     Move {x: i32, y: i32},
+//     Write(String),
+//     ChangeColor(i32,i32,i32),
+// }
+
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
+}
+
+fn main() {
+    let _home: IpAddr = IpAddr::V4(0, 0, 0, 0);
+
+    let _loopback: IpAddr = IpAddr::V6(String::from("::1"));
+}
+
+fn value_in_cent(coin: Coin) -> i32 {
+    match coin {
+        Coin::Dime => {
+            println!("Lucky Penny");
+            1
+        }
+        Coin::Nickel => 5,
+        Coin::Penny => 10,
+        Coin::Quarter => 25,
+    }
 }
