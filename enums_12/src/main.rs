@@ -17,12 +17,17 @@ enum IpAddr {
 //     Write(String),
 //     ChangeColor(i32,i32,i32),
 // }
+#[derive(Debug)]
+enum IdState {
+    EastJava,
+    WestJava,
+}
 
 enum Coin {
     Penny,
     Nickel,
     Dime,
-    Quarter,
+    Quarter(IdState),
 }
 
 fn main() {
@@ -39,6 +44,9 @@ fn value_in_cent(coin: Coin) -> i32 {
         }
         Coin::Nickel => 5,
         Coin::Penny => 10,
-        Coin::Quarter => 25,
+        Coin::Quarter(state) => {
+            println!("State Quarter From {:?}!", state);
+            25
+        }
     }
 }
