@@ -37,6 +37,9 @@ fn main() {
     let _five = Some(5);
     let _six = _plus_one(_five);
     let _none = _plus_one(None);
+
+    _other_pattern(2);
+    _other_pattern(10);
 }
 
 fn _value_in_cent(coin: Coin) -> i32 {
@@ -58,5 +61,14 @@ fn _plus_one(x: Option<i32>) -> Option<i32> {
     match x {
         None => None,
         Some(i) => Some(i + 1),
+    }
+}
+
+fn _other_pattern(x: u8) {
+    match x {
+        1 => println!("One"),
+        2 => println!("Two"),
+        3 => println!("Three"),
+        _ => (),
     }
 }
