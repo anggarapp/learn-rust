@@ -40,6 +40,20 @@ fn main() {
 
     _other_pattern(2);
     _other_pattern(10);
+
+    // match and if let comparision
+
+    let some_u8 = Some(0u8);
+
+    
+    match some_u8 {
+        Some(3) => println!("Tiga"),
+        _ => (),
+    }
+
+    if let Some(3) = some_u8 {
+        println!("Tiga");
+    }
 }
 
 fn _value_in_cent(coin: Coin) -> i32 {
