@@ -1,8 +1,10 @@
+mod client;
 mod network {
     fn connect() {}
-}
-mod client {
-    fn connect() {}
+
+    mod server {
+        fn connect() {}
+    }
 }
 
 pub fn add(left: usize, right: usize) -> usize {
