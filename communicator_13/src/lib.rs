@@ -1,9 +1,9 @@
-mod client;
-mod network {
-    fn connect() {}
+pub mod client;
+pub mod network {
+    pub fn connect() {}
 
-    mod server {
-        fn connect() {}
+    pub mod server {
+        pub fn connect() {}
     }
 }
 
