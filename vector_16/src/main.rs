@@ -11,5 +11,10 @@ fn main() {
     let _first_option: Option<&i32> = _vectors_from_vec.get(0);
 
     // let dosnt_exist = &_vectors_from_vec[100]; // error because accesing value doesnt exist
-    let dosnt_exist = _vectors_from_macro.get(100); // not error because return Option -> None
+    let _dosnt_exist = _vectors_from_macro.get(100); // not error because return Option -> None
+
+    // Borrows Rules Error
+    // let mut _value = vec![1, 2, 3, 4, 5];
+    // let _first_value = &v[0];
+    // v.push(6);
 }
