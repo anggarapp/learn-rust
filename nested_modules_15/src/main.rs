@@ -6,11 +6,22 @@ pub mod a {
     }
 }
 
+enum TrafficLight {
+    Red,
+    Yellow,
+    Green,
+}
+
 use a::series::of;
 use a::series::of::nested_modules;
+use TrafficLight::{Red, Yellow};
 
 fn main() {
     of::nested_modules(); // concise import
     a::series::of::nested_modules(); // full name call
     nested_modules(); // direct functin calling with concise import
+
+    let red: TrafficLight = Red;
+    let yellow: TrafficLight = Yellow;
+    let green: TrafficLight = TrafficLight::Green;
 }
