@@ -12,4 +12,13 @@ fn main() {
     let klunk = String::from(" Klunk");
     _klinkklank.push_str(&klunk);
     println!("{}", _klinkklank);
+    let _klinkklankklunk = _klinkklank + " Klonk";
+    println!("{}", _klinkklankklunk);
+
+    let _grit = String::from("Grit");
+    let _grut = String::from("Grut");
+    let _grat = String::from("Grat");
+
+    let _griting = format!("{}-{}-{}", _grit, _grut, _grat);
+    println!("{}", _griting);
 }
