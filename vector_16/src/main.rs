@@ -17,4 +17,16 @@ fn main() {
     // let mut _value = vec![1, 2, 3, 4, 5];
     // let _first_value = &v[0];
     // v.push(6);
+
+    enum SpreadsheetCell {
+        Int(i32),
+        Float(f64),
+        Text(String),
+    }
+
+    let row = vec![
+        SpreadsheetCell::Int(3),
+        SpreadsheetCell::Float(10.12),
+        SpreadsheetCell::Text(String::from("grey")),
+    ];
 }
