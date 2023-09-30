@@ -14,7 +14,7 @@ enum TrafficLight {
 
 use a::series::of;
 use a::series::of::nested_modules;
-use TrafficLight::{Red, Yellow};
+use TrafficLight::*;
 
 fn main() {
     of::nested_modules(); // concise import
@@ -23,5 +23,5 @@ fn main() {
 
     let red: TrafficLight = Red;
     let yellow: TrafficLight = Yellow;
-    let green: TrafficLight = TrafficLight::Green;
+    let green: TrafficLight = Green;
 }
