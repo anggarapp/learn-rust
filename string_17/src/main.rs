@@ -21,4 +21,17 @@ fn main() {
 
     let _griting = format!("{}-{}-{}", _grit, _grut, _grat);
     println!("{}", _griting);
+
+    let _hello = String::from("Hello Kiddos!");
+    let _hello_len = _hello.len();
+    // let _first_hello = &_hello[0];
+    let _hello_literal = "Hello Kiddos!";
+    let _first_hello = &_hello_literal[0..];
+
+    for c in _hello_literal.chars() {
+        println!("{}", c);
+    }
+    for b in _hello_literal.bytes() {
+        println!("{}", b);
+    }
 }
