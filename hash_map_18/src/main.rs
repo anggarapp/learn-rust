@@ -19,4 +19,10 @@ fn main() {
     for (key, value) in &_scores {
         println!("{}: {}", key, value);
     }
+
+    let mut _late_scores = HashMap::new();
+    _late_scores.insert(String::from("Red"), 13);
+    _late_scores.insert(String::from("Red"), 54);
+
+    println!("{:?}", _late_scores);
 }
