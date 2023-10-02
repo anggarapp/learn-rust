@@ -24,5 +24,17 @@ fn main() {
     _late_scores.insert(String::from("Red"), 13);
     _late_scores.insert(String::from("Red"), 54);
 
+    // Insert if Key Exist
+    _late_scores.entry(String::from("Red")).or_insert(99);
+    _late_scores.entry(String::from("Blue")).or_insert(101);
+
     println!("{:?}", _late_scores);
+
+    let text = "hello cruel wonderful cruel despair";
+    let mut map = HashMap::new();
+    for word in text.split_whitespace() {
+        let count = map.entry(word).or_insert(0); //returning reference to hashmap value
+        *count += 1;
+    }
+    println!("{:?}", map);
 }
