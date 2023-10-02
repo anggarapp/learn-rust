@@ -7,4 +7,16 @@ fn main() {
     let teams = vec![String::from("Purple"), String::from("Grey")];
     let initial = vec![9, 99];
     let _scores_with_vec: HashMap<_, _> = teams.iter().zip(initial.iter()).collect();
+
+    // get value of Hash Map
+    let _team_name = String::from("Grey");
+    let _score = _scores.get(&_team_name);
+    // or
+    let _score = _scores.get("Grey");
+
+    println!("{}", _score.unwrap());
+
+    for (key, value) in &_scores {
+        println!("{}: {}", key, value);
+    }
 }
