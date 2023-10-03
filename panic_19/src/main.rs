@@ -2,6 +2,23 @@ use std::fs::File;
 use std::io;
 use std::io::ErrorKind;
 use std::io::Read;
+
+pub struct Guess {
+    value: u32,
+}
+
+impl Guess {
+    pub fn new(value: u32) -> Guess {
+        if value < 1 || value > 100 {
+            panic!("Guess value must between 1 and 100, got {}", value);
+        }
+        Guess { value: value }
+    }
+
+    pub fn value(&self) -> u32 {
+        self.value
+    }
+}
 fn main() {
     // panic!("farewell");
 
@@ -15,7 +32,12 @@ fn main() {
     // _using_expect();
 
     // using ? on Result type return value
-    let _a_string = _read_from_file();
+    // let _a_string = _read_from_file();
+
+    // custom type for validation
+    // let _guess_wrong = Guess::new(201);
+    let _guess_right = Guess::new(2);
+    println!("{}", _guess_right.value());
 }
 
 fn _read_from_file() -> Result<String, io::Error> {
