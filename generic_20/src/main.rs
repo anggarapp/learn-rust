@@ -1,6 +1,6 @@
-struct Point<T> {
+struct Point<T, U> {
     x: T,
-    y: T,
+    y: U,
 }
 
 fn _largest(list: &[i32]) -> i32 {
@@ -21,4 +21,5 @@ fn main() {
 
     let _int = Point { x: 5, y: 12 };
     let _flt = Point { x: 6.6, y: 12.9 };
+    let _bth = Point { x: 6.6, y: 12.9 };
 }
