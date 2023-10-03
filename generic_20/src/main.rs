@@ -1,4 +1,7 @@
-use std::{fmt::format, result};
+use std::{
+    fmt::{format, Debug, Display},
+    result,
+};
 
 struct ExPoint<T> {
     x: T,
@@ -42,6 +45,18 @@ fn _tb_largest<T: PartialOrd + Copy>(list: &[T]) -> T {
         }
     }
     largest
+}
+
+fn _multiple_tb<T: Display + Clone, U: Clone + Debug>(t: T, u: U) -> i32 {
+    2
+}
+
+fn _simplified_multiple_tb<T, U>(t: T, u: U) -> i32
+where
+    T: Display + Clone,
+    U: Clone + Debug,
+{
+    2
 }
 
 trait Summarizable {
