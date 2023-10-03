@@ -1,4 +1,4 @@
-use std::fmt::format;
+use std::{fmt::format, result};
 
 struct ExPoint<T> {
     x: T,
@@ -25,6 +25,16 @@ impl<T, U> Point<T, U> {
 }
 
 fn _largest(list: &[i32]) -> i32 {
+    let mut largest = list[0];
+    for &item in list.iter() {
+        if item > largest {
+            largest = item;
+        }
+    }
+    largest
+}
+
+fn _tb_largest<T: PartialOrd + Copy>(list: &[T]) -> T {
     let mut largest = list[0];
     for &item in list.iter() {
         if item > largest {
@@ -97,4 +107,11 @@ fn main() {
 
     println!("New Tweet here : {}", _tweet.summmary());
     println!("New Article here : {}", _article.summmary());
+
+    let _chars = vec!['w', 'v', 'e', 'r', 'y'];
+
+    let result = _tb_largest(&_numbers);
+    println!("Largest Number is: {}", result);
+    let result = _tb_largest(&_chars);
+    println!("Largest Char is: {}", result);
 }
