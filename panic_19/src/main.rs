@@ -13,6 +13,15 @@ fn main() {
 
     // using expect
     // _using_expect();
+
+    // using ? on Result type return value
+    let _a_string = _read_from_file();
+}
+
+fn _read_from_file() -> Result<String, io::Error> {
+    let mut _string = String::new();
+    let mut _file = File::open("test.txt")?.read_to_string(&mut _string)?;
+    Ok(_string)
 }
 
 fn _using_unwrap() {
