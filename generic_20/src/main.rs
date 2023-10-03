@@ -1,3 +1,5 @@
+use std::fmt::format;
+
 struct ExPoint<T> {
     x: T,
     y: T,
@@ -32,6 +34,36 @@ fn _largest(list: &[i32]) -> i32 {
     largest
 }
 
+trait Summarizable {
+    fn summmary(&self) -> String;
+}
+
+struct Article {
+    headline: String,
+    location: String,
+    author: String,
+    content: String,
+}
+
+impl Summarizable for Article {
+    fn summmary(&self) -> String {
+        format!("{}, by {} ({})", self.headline, self.author, self.location)
+    }
+}
+
+struct Tweet {
+    username: String,
+    content: String,
+    reply: bool,
+    retweet: bool,
+}
+
+impl Summarizable for Tweet {
+    fn summmary(&self) -> String {
+        format!("{}: {}", self.username, self.content)
+    }
+}
+
 fn main() {
     let _numbers = vec![34, 55, 22, 101, 66];
     let mut _largest = _largest(&_numbers);
@@ -48,4 +80,21 @@ fn main() {
 
     let _mix = _bth.mixup(_flt);
     println!("Mix 1 X = {}, Mix 1 Y = {}", _mix.x, _mix.y);
+
+    let _tweet = Tweet {
+        username: String::from("pendaurulang"),
+        content: String::from("Hello Kiddos!"),
+        reply: false,
+        retweet: false,
+    };
+
+    let _article = Article {
+        headline: String::from("test"),
+        location: String::from("test"),
+        author: String::from("test"),
+        content: String::from("test"),
+    };
+
+    println!("New Tweet here : {}", _tweet.summmary());
+    println!("New Article here : {}", _article.summmary());
 }
