@@ -6,6 +6,11 @@ pub fn add_two(number: i32) -> i32 {
     number + 2
 }
 
+pub fn greeting(name: &str) -> String {
+    format!("Hello!")
+    // format!("Hello {}!", name)
+}
+
 #[derive(Debug)]
 pub struct Rectangle {
     length: u32,
@@ -62,5 +67,14 @@ mod tests {
             width: 12,
         };
         assert!(!smaller.can_hold(&larger));
+    }
+    #[test]
+    fn greeting_contains_name() {
+        let result = greeting("Kafka");
+        assert!(
+            result.contains("Kafka"),
+            "Greeting di not contain name, value was `{}`",
+            result
+        );
     }
 }
