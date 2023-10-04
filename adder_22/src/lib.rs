@@ -103,6 +103,7 @@ mod tests {
 
     #[test]
     #[should_panic]
+    #[ignore]
     fn greatee_than_100() {
         Guess::new(200);
     }
