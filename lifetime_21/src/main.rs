@@ -43,4 +43,6 @@ fn main() {
     let _i = ImportantExcerpt {
         part: _first_sentence,
     };
+
+    let _static: &'static str = "Static lifetime";
 }
