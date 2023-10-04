@@ -2,6 +2,10 @@ pub fn add(left: usize, right: usize) -> usize {
     left + right
 }
 
+pub fn add_two(number: i32) -> i32 {
+    number + 2
+}
+
 #[derive(Debug)]
 pub struct Rectangle {
     length: u32,
@@ -22,6 +26,12 @@ mod tests {
     fn exploration_add() {
         let result = add(2, 2);
         assert_eq!(result, 4);
+    }
+
+    #[test]
+    fn add_two_test() {
+        let result = add_two(5);
+        assert_eq!(result, 7);
     }
 
     // #[test]
