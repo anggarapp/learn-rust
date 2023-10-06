@@ -4,11 +4,7 @@ use std::io::prelude::*;
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    let query = &args[1];
-    let filename = &args[2];
-
-    println!("Searching for {}", query);
-    println!("In file {}", filename);
+    let (query, filename) = parse_config(args);
 
     let mut file = File::open(filename).expect("file not found");
 
@@ -17,4 +13,10 @@ fn main() {
         .expect("something went wrong on reading the file");
 
     println!("With text:\n{}", contents);
+}
+
+fn parse_config(args: &[String]) -> (&str, &str) {
+    let query = &args[1];
+    let filename = &args[2];
+    (query, filename)
 }
