@@ -68,6 +68,14 @@ fn call_with_different_values() {
     assert_eq!(v2, 2);
 }
 
+fn move_keyword_closure() {
+    let x = vec![1, 2, 3];
+    let equal_to_x = move |z: Vec<i32>| z == x;
+    // println!("can't use x here: {:?}", x);  // cant use x here
+    let y = vec![1, 2, 3];
+    // assert!(equal_to_x(y));
+}
+
 fn main() {
     let simulatd_user_specified_value = 10;
     let simulated_random_number = 7;
@@ -75,7 +83,6 @@ fn main() {
     generate_workout(simulatd_user_specified_value, simulated_random_number);
 
     let x = 4;
-
     let equal_to_x = |z: i32| z == x; //do
                                       // dont
                                       // fn equal_to_x(z: i32) -> bool {
@@ -83,4 +90,7 @@ fn main() {
                                       // }
     let y = 4;
     assert!(equal_to_x(y));
+
+    // move keyword on closure
+    move_keyword_closure();
 }
