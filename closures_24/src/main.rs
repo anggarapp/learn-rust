@@ -38,7 +38,7 @@ fn _simulated_expensive_calculation(intensity: i32) -> i32 {
     intensity
 }
 
-fn generate_workout(intensity: i32, random_number: i32) {
+fn _generate_workout(intensity: i32, random_number: i32) {
     let mut expensive_result = Cacher::new(|num: i32| -> i32 {
         println!("calculating slowly...");
         thread::sleep(Duration::from_secs(2));
@@ -60,6 +60,7 @@ fn generate_workout(intensity: i32, random_number: i32) {
 }
 
 #[test] // fail test
+#[ignore = "fail test"]
 fn call_with_different_values() {
     let mut c = Cacher::new(|a| a);
     let v1 = c.value(1);
@@ -68,7 +69,17 @@ fn call_with_different_values() {
     assert_eq!(v2, 2);
 }
 
-fn move_keyword_closure() {
+#[test]
+fn iterator_demonstration() {
+    let v1 = vec![1, 2, 3];
+    let mut v1_iter = v1.iter();
+    assert_eq!(v1_iter.next(), Some(&1));
+    assert_eq!(v1_iter.next(), Some(&2));
+    assert_eq!(v1_iter.next(), Some(&3));
+    assert_eq!(v1_iter.next(), None);
+}
+
+fn _move_keyword_closure() {
     let x = vec![1, 2, 3];
     let equal_to_x = move |z: Vec<i32>| z == x;
     // println!("can't use x here: {:?}", x);  // cant use x here
@@ -76,11 +87,19 @@ fn move_keyword_closure() {
     // assert!(equal_to_x(y));
 }
 
+fn _basic_iterator() {
+    let v1 = vec![1, 2, 3];
+    let v1_iter = v1.iter();
+    for val in v1_iter {
+        println!("Got: {}", val);
+    }
+}
+
 fn main() {
     let simulatd_user_specified_value = 10;
     let simulated_random_number = 7;
 
-    generate_workout(simulatd_user_specified_value, simulated_random_number);
+    // _generate_workout(simulatd_user_specified_value, simulated_random_number);
 
     let x = 4;
     let equal_to_x = |z: i32| z == x; //do
@@ -92,5 +111,8 @@ fn main() {
     assert!(equal_to_x(y));
 
     // move keyword on closure
-    move_keyword_closure();
+    _move_keyword_closure();
+
+    //basic iter
+    _basic_iterator();
 }
