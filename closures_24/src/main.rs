@@ -32,12 +32,6 @@ where
     }
 }
 
-fn main() {
-    let simulatd_user_specified_value = 10;
-    let simulated_random_number = 7;
-
-    generate_workout(simulatd_user_specified_value, simulated_random_number);
-}
 fn _simulated_expensive_calculation(intensity: i32) -> i32 {
     println!("calculating slowly...");
     thread::sleep(Duration::from_secs(2));
@@ -63,4 +57,30 @@ fn generate_workout(intensity: i32, random_number: i32) {
             )
         }
     }
+}
+
+#[test] // fail test
+fn call_with_different_values() {
+    let mut c = Cacher::new(|a| a);
+    let v1 = c.value(1);
+    let v2 = c.value(2);
+
+    assert_eq!(v2, 2);
+}
+
+fn main() {
+    let simulatd_user_specified_value = 10;
+    let simulated_random_number = 7;
+
+    generate_workout(simulatd_user_specified_value, simulated_random_number);
+
+    let x = 4;
+
+    let equal_to_x = |z: i32| z == x; //do
+                                      // dont
+                                      // fn equal_to_x(z: i32) -> bool {
+                                      //     z == x
+                                      // }
+    let y = 4;
+    assert!(equal_to_x(y));
 }
