@@ -95,9 +95,10 @@ fn _basic_iterator() {
     }
 }
 
-fn iterator_adaptors() {
+fn _iterator_adaptors() {
     let _vec_1 = vec![1, 2, 3];
-    let _maped_vec = _vec_1.iter().map(|x| x + 1);
+    let _maped_vec: Vec<_> = _vec_1.iter().map(|x| x + 1).collect();
+    assert_eq!(_maped_vec, vec![2, 3, 4]);
 }
 
 fn main() {
@@ -120,4 +121,7 @@ fn main() {
 
     //basic iter
     _basic_iterator();
+
+    // iterator adaptors
+    _iterator_adaptors();
 }
