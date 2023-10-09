@@ -95,6 +95,11 @@ fn _basic_iterator() {
     }
 }
 
+fn iterator_adaptors() {
+    let _vec_1 = vec![1, 2, 3];
+    let _maped_vec = _vec_1.iter().map(|x| x + 1);
+}
+
 fn main() {
     let simulatd_user_specified_value = 10;
     let simulated_random_number = 7;
