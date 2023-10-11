@@ -1,6 +1,23 @@
 use std::thread;
 use std::time::Duration;
 
+struct Config {
+    query: String,
+    filename: String,
+}
+
+impl Config {
+    fn new(args: &[String]) -> Result<Config, &'static str> {
+        if args.len() < 3 {
+            return Err("not enough arguments");
+        }
+        let query = args[1].clone();
+        let filename = args[2].clone();
+
+        Ok(Config { query, filename })
+    }
+}
+
 struct Cacher<T>
 where
     T: Fn(i32) -> i32,
