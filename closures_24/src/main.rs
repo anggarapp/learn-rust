@@ -1,5 +1,6 @@
-use std::thread;
+use std::io::Write;
 use std::time::Duration;
+use std::{env, process, thread};
 
 struct Config {
     query: String,
@@ -118,6 +119,17 @@ fn _iterator_adaptors() {
     assert_eq!(_maped_vec, vec![2, 3, 4]);
 }
 
+fn _run_config() {
+    let args: Vec<String> = env::args().collect();
+    let mut stderr = std::io::stderr();
+
+    let config = Config::new(&args).unwrap_or_else(|err| {
+        writeln!(&mut stderr, "Problem parsing arguments: {}", err)
+            .expect("Could not write to stderr");
+        process::exit(1);
+    });
+}
+
 fn main() {
     let simulatd_user_specified_value = 10;
     let simulated_random_number = 7;
@@ -141,4 +153,7 @@ fn main() {
 
     // iterator adaptors
     _iterator_adaptors();
+
+    //
+    _run_config();
 }
