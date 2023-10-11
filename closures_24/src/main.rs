@@ -8,13 +8,16 @@ struct Config {
 }
 
 impl Config {
-    fn new(args: &[String]) -> Result<Config, &'static str> {
-        if args.len() < 3 {
-            return Err("not enough arguments");
-        }
-        let query = args[1].clone();
-        let filename = args[2].clone();
-
+    fn new(mut args: std::env::Args) -> Result<Config, &'static str> {
+        args.next();
+        let query = match args.next() {
+            Some(arg) => arg,
+            None => return Err("Didn't get a query string"),
+        };
+        let filename = match args.next() {
+            Some(arg) => arg,
+            None => return Err("Didn't get a file name"),
+        };
         Ok(Config { query, filename })
     }
 }
@@ -120,10 +123,8 @@ fn _iterator_adaptors() {
 }
 
 fn _run_config() {
-    let args: Vec<String> = env::args().collect();
     let mut stderr = std::io::stderr();
-
-    let config = Config::new(&args).unwrap_or_else(|err| {
+    let config = Config::new(env::args()).unwrap_or_else(|err| {
         writeln!(&mut stderr, "Problem parsing arguments: {}", err)
             .expect("Could not write to stderr");
         process::exit(1);
