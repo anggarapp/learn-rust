@@ -63,4 +63,6 @@ fn _demo_drop_traits() {
 
     println!("CustomSmartPointer created");
     println!("Wait for droping....");
+    drop(c);
+    println!("Already droped");
 }
