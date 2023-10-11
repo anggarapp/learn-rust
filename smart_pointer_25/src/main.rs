@@ -18,6 +18,16 @@ impl Deref for Mp3 {
     }
 }
 
+struct CustomSmartPointer {
+    data: String,
+}
+
+impl Drop for CustomSmartPointer {
+    fn drop(&mut self) {
+        println!("Droping CustomSmartPointer");
+    }
+}
+
 fn main() {
     let b = Box::new(5);
     println!("{}", b);
@@ -33,6 +43,7 @@ fn main() {
     println!("{}", x);
     assert_eq!(6, x);
     _demo_deref_traits();
+    _demo_drop_traits();
 }
 
 fn _demo_deref_traits() {
@@ -43,4 +54,13 @@ fn _demo_deref_traits() {
     };
 
     assert_eq!(vec![1, 2, 3], *my_fav_song);
+}
+
+fn _demo_drop_traits() {
+    let c = CustomSmartPointer {
+        data: String::from("will droped"),
+    };
+
+    println!("CustomSmartPointer created");
+    println!("Wait for droping....");
 }
