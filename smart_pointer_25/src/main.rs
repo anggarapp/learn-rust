@@ -2,8 +2,8 @@ enum List {
     Cons(i32, Box<List>),
     Nil,
 }
-use std::ops::Deref;
-use List::{Cons, Nil};
+use std::{ops::Deref, rc::Rc};
+// use List::{Cons, Nil};
 
 struct Mp3 {
     audio: Vec<u8>,
@@ -17,6 +17,13 @@ impl Deref for Mp3 {
         &self.audio
     }
 }
+
+enum Listrc {
+    Cons(i32, Rc<Listrc>),
+    Nil,
+}
+
+use Listrc::{Cons, Nil};
 
 struct CustomSmartPointer {
     data: String,
@@ -32,7 +39,7 @@ fn main() {
     let b = Box::new(5);
     println!("{}", b);
 
-    let list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
+    // let list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
 
     let mut x = 5;
     {
@@ -65,4 +72,10 @@ fn _demo_drop_traits() {
     println!("Wait for droping....");
     drop(c);
     println!("Already droped");
+}
+
+fn _demo_reference_counting() {
+    let a = Rc::new(Listrc::Cons(5, Rc::new(Listrc::Cons(10, Rc::new(Nil)))));
+    let b = Cons(3, a.clone());
+    let c = Cons(4, a.clone());
 }
