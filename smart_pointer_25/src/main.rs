@@ -51,6 +51,7 @@ fn main() {
     assert_eq!(6, x);
     _demo_deref_traits();
     _demo_drop_traits();
+    _demo_increasing_references_count();
 }
 
 fn _demo_deref_traits() {
@@ -78,4 +79,16 @@ fn _demo_reference_counting() {
     let a = Rc::new(Listrc::Cons(5, Rc::new(Listrc::Cons(10, Rc::new(Nil)))));
     let b = Cons(3, a.clone());
     let c = Cons(4, a.clone());
+}
+
+fn _demo_increasing_references_count() {
+    let a = Rc::new(Cons(5, Rc::new(Cons(10, Rc::new(Nil)))));
+    println!("rc = {}", Rc::strong_count(&a));
+    let b = Cons(3, a.clone());
+    println!("rc after creating b = {}", Rc::strong_count(&a));
+    {
+        let c = Cons(4, a.clone());
+        println!("rc after creating c = {}", Rc::strong_count(&a));
+    }
+    println!("rc after c goes out of scope = {}", Rc::strong_count(&a));
 }
