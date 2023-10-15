@@ -1,3 +1,4 @@
+use std::cell::RefCell;
 enum List {
     Cons(i32, Box<List>),
     Nil,
@@ -41,7 +42,7 @@ fn main() {
     // _demo_deref_traits();
     // _demo_drop_traits();
     // _demo_increasing_references_count();
-    
+    _demo_rfcell_interior_muttablity_pattern();
 }
 
 fn _demo_cons_list() {
@@ -102,4 +103,23 @@ fn _demo_increasing_references_count() {
         println!("rc after creating c = {}", Rc::strong_count(&a));
     }
     println!("rc after c goes out of scope = {}", Rc::strong_count(&a));
+}
+
+fn a_fn_that_immutably_borrows(a: &i32) {
+    println!("a is {}", a);
+}
+
+fn a_fn_that_mutably_borrows(b: &mut i32) {
+    *b += 1;
+}
+
+fn exec_demo(r: &RefCell<i32>) {
+    a_fn_that_immutably_borrows(&r.borrow());
+    a_fn_that_mutably_borrows(&mut r.borrow_mut());
+    a_fn_that_immutably_borrows(&r.borrow());
+}
+
+fn _demo_rfcell_interior_muttablity_pattern() {
+    let data = RefCell::new(5);
+    exec_demo(&data);
 }
