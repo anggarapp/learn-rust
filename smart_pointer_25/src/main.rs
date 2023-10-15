@@ -55,6 +55,12 @@ impl Listc {
     }
 }
 
+#[derive(Debug)]
+struct Node {
+    value: i32,
+    children: RefCell<Vec<Rc<Node>>>,
+}
+
 fn main() {
     // _demo_deref();
     // _demo_cons_list();
@@ -63,7 +69,19 @@ fn main() {
     // _demo_increasing_references_count();
     // _demo_rfcell_interior_muttablity_pattern();
     // _demo_combine_rc_refcell();
-    _demo_leaking_memory();
+    // _demo_leaking_memory();
+    _demo_node();
+}
+
+fn _demo_node() {
+    let leaf = Rc::new(Node {
+        value: 3,
+        children: RefCell::new(vec![]),
+    });
+    let branch = Rc::new(Node {
+        value: 5,
+        children: RefCell::new(vec![leaf.clone()]),
+    });
 }
 
 fn _demo_leaking_memory() {
