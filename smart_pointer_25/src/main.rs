@@ -36,11 +36,25 @@ impl Drop for CustomSmartPointer {
 }
 
 fn main() {
+    // _demo_deref();
+    // _demo_cons_list();
+    // _demo_deref_traits();
+    // _demo_drop_traits();
+    // _demo_increasing_references_count();
+    
+}
+
+fn _demo_cons_list() {
     let b = Box::new(5);
     println!("{}", b);
 
-    // let list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
+    let list = List::Cons(
+        1,
+        Box::new(List::Cons(2, Box::new(List::Cons(3, Box::new(List::Nil))))),
+    );
+}
 
+fn _demo_deref() {
     let mut x = 5;
     {
         let y = &mut x;
@@ -49,9 +63,6 @@ fn main() {
 
     println!("{}", x);
     assert_eq!(6, x);
-    _demo_deref_traits();
-    _demo_drop_traits();
-    _demo_increasing_references_count();
 }
 
 fn _demo_deref_traits() {
