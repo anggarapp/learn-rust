@@ -1,4 +1,5 @@
 use std::cell::RefCell;
+use std::rc::Weak;
 use std::{ops::Deref, rc::Rc};
 enum List {
     Cons(i32, Box<List>),
@@ -58,6 +59,7 @@ impl Listc {
 #[derive(Debug)]
 struct Node {
     value: i32,
+    parent: RefCell<Weak<Node>>,
     children: RefCell<Vec<Rc<Node>>>,
 }
 
@@ -76,12 +78,20 @@ fn main() {
 fn _demo_node() {
     let leaf = Rc::new(Node {
         value: 3,
+        parent: RefCell::new(Weak::new()),
         children: RefCell::new(vec![]),
     });
+
+    println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
+
     let branch = Rc::new(Node {
         value: 5,
+        parent: RefCell::new(Weak::new()),
         children: RefCell::new(vec![leaf.clone()]),
     });
+
+    *leaf.parent.borrow_mut() = Rc::downgrade(&branch);
+    println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
 }
 
 fn _demo_leaking_memory() {
