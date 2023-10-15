@@ -1,9 +1,9 @@
 use std::cell::RefCell;
+use std::{ops::Deref, rc::Rc};
 enum List {
     Cons(i32, Box<List>),
     Nil,
 }
-use std::{ops::Deref, rc::Rc};
 // use List::{Cons, Nil};
 
 struct Mp3 {
@@ -18,7 +18,6 @@ impl Deref for Mp3 {
         &self.audio
     }
 }
-
 enum Listrc {
     Cons(i32, Rc<Listrc>),
     Nil,
@@ -36,13 +35,65 @@ impl Drop for CustomSmartPointer {
     }
 }
 
+#[derive(Debug)]
+enum Listrfc {
+    Cons(Rc<RefCell<i32>>, Rc<Listrfc>),
+    Nil,
+}
+#[derive(Debug)]
+enum Listc {
+    Cons(i32, RefCell<Rc<Listc>>),
+    Nil,
+}
+
+impl Listc {
+    fn tail(&self) -> Option<&RefCell<Rc<Listc>>> {
+        match *self {
+            Listc::Cons(_, ref item) => Some(item),
+            Listc::Nil => None,
+        }
+    }
+}
+
 fn main() {
     // _demo_deref();
     // _demo_cons_list();
     // _demo_deref_traits();
     // _demo_drop_traits();
     // _demo_increasing_references_count();
-    _demo_rfcell_interior_muttablity_pattern();
+    // _demo_rfcell_interior_muttablity_pattern();
+    // _demo_combine_rc_refcell();
+    _demo_leaking_memory();
+}
+
+fn _demo_leaking_memory() {
+    let a = Rc::new(Listc::Cons(5, RefCell::new(Rc::new(Listc::Nil))));
+    println!("a initial rc count = {}", Rc::strong_count(&a));
+    println!("a next item = {:?}", a.tail());
+    let b = Rc::new(Listc::Cons(10, RefCell::new(a.clone())));
+    println!("a rc count after b creation = {}", Rc::strong_count(&a));
+    println!("b initial rc count = {}", Rc::strong_count(&b));
+    println!("b next item = {:?}", b.tail());
+    if let Some(ref link) = a.tail() {
+        *link.borrow_mut() = b.clone();
+    }
+    println!("b rc count after changing a = {}", Rc::strong_count(&b));
+    println!("a rc count after changing a = {}", Rc::strong_count(&a));
+
+    // overflow the stack
+    println!("a next item = {:?}", a.tail());
+}
+
+fn _demo_combine_rc_refcell() {
+    let value = Rc::new(RefCell::new(5));
+    let a = Listrfc::Cons(value.clone(), Rc::new(Listrfc::Nil));
+    let shared_list = Rc::new(a);
+    let b = Listrfc::Cons(Rc::new(RefCell::new(6)), shared_list.clone());
+    let c = Listrfc::Cons(Rc::new(RefCell::new(10)), shared_list.clone());
+    *value.borrow_mut() += 10;
+    println!("shared_list after = {:?}", shared_list);
+    println!("b after = {:?}", b);
+    println!("c after = {:?}", c);
 }
 
 fn _demo_cons_list() {
