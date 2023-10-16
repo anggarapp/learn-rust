@@ -14,4 +14,6 @@ fn _demo_init_threads() {
     for i in 1..5 {
         println!("this is number {} from main threads kiddos", i);
     }
+
+    handle.join();
 }
