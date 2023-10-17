@@ -1,4 +1,6 @@
 use std::sync::mpsc;
+use std::sync::Arc;
+use std::sync::Mutex;
 use std::thread;
 use std::time::Duration;
 
@@ -7,7 +9,27 @@ fn main() {
     // _demo_move_on_closure();
     // _demo_channel_mpsc();
     // _demo_view_redeiver_waiting();
-    _demo_multiple_produceres();
+    // _demo_multiple_produceres();
+    // _demo_mutex();
+    _demo_mutex_btwn_threads();
+}
+
+fn _demo_mutex_btwn_threads() {
+    let counter = Arc::new(Mutex::new(0));
+    let mut handles = vec![];
+
+    for _ in 0..10 {
+        let counter = counter.clone();
+        let handle = thread::spawn(move || {
+            let mut num = counter.lock().unwrap();
+            *num += 1;
+        });
+        handles.push(handle);
+    }
+    for handle in handles {
+        handle.join().unwrap();
+    }
+    println!("Result: {}", *counter.lock().unwrap());
 }
 
 fn _demo_init_threads() {
@@ -97,4 +119,14 @@ fn _demo_multiple_produceres() {
         println!("Got: {}", received);
     }
     // thread::sleep(Duration::from_millis(5));
+}
+
+fn _demo_mutex() {
+    let m = Mutex::new(5);
+    {
+        let mut num = m.lock().unwrap();
+        *num = 6;
+    }
+
+    println!("m = {:?}", m);
 }
