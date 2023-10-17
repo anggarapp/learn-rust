@@ -7,7 +7,17 @@ fn main() {
     // _function_parameter();
     // _matching_literals();
     // _named_variables();
-    _multiple_pattern();
+    // _multiple_pattern();
+    _values_range();
+}
+
+fn _values_range() {
+    let x = 5;
+
+    match x {
+        1..=5 => println!("one through five"),
+        _ => println!("something else"),
+    }
 }
 
 fn _multiple_pattern() {
