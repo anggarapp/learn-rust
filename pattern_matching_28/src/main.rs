@@ -1,7 +1,21 @@
 fn main() {
     // _very_simple_match();
     // _if_let();
-    _while_let();
+    // _while_let();
+    // _for_loops();
+    // _let_deconstruct();
+}
+
+fn _let_deconstruct() {
+    let (x, y, z) = (1, 2, 3);
+}
+
+fn _for_loops() {
+    let v = vec!['a', 'b', 'c'];
+
+    for (index, value) in v.iter().enumerate() {
+        println!("{} is at index {}", value, index);
+    }
 }
 
 fn _while_let() {
