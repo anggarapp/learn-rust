@@ -1,6 +1,19 @@
 fn main() {
     // _very_simple_match();
-    _if_let();
+    // _if_let();
+    _while_let();
+}
+
+fn _while_let() {
+    let mut stack = Vec::new();
+
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+
+    while let Some(top) = stack.pop() {
+        println!("{}", top);
+    }
 }
 
 fn _if_let() {
