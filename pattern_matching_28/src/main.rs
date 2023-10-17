@@ -11,7 +11,16 @@ fn main() {
     // _values_range();
     // _destruct_struct();
     // _destruct_enum();
-    _destruct_nested_enum_struct();
+    // _destruct_nested_enum_struct();
+    _destruct_struct_tuples();
+}
+
+fn _destruct_struct_tuples() {
+    struct Point {
+        x: i32,
+        y: i32,
+    }
+    let ((feet, inches), Point { x, y }) = ((3, 10), Point { x: 3, y: -10 });
 }
 
 fn _destruct_nested_enum_struct() {
