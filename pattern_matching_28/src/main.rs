@@ -4,8 +4,46 @@ fn main() {
     // _while_let();
     // _for_loops();
     // _let_deconstruct();
-    _function_parameter();
+    // _function_parameter();
+    // _matching_literals();
+    // _named_variables();
+    _multiple_pattern();
 }
+
+fn _multiple_pattern() {
+    let x = 1;
+
+    match x {
+        1 | 2 => println!("one or two"),
+        3 => println!("three"),
+        _ => println!("anything"),
+    }
+}
+
+fn _matching_literals() {
+    let x = 66;
+
+    match x {
+        1 => println!("one"),
+        2 => println!("two"),
+        3 => println!("three"),
+        _ => println!("anything"),
+    }
+}
+
+fn _named_variables() {
+    let x = Some(5);
+    let y = 10;
+
+    match x {
+        Some(50) => println!("Got 50"),
+        Some(y) => println!("Matched, y = {y}"),
+        _ => println!("Default case, x = {:?}", x),
+    }
+
+    println!("at the end: x = {:?}, y = {y}", x);
+}
+
 fn _function_parameter() {
     fn print_coordinates(&(x, y): &(i32, i32)) {
         println!("Current location: ({}, {})", x, y);
