@@ -1,6 +1,7 @@
 fn main() {
-    _function_as_parameters();
-    _enum_as_initializer();
+    // _function_as_parameters();
+    // _enum_as_initializer();
+    _returning_closure();
 }
 
 fn _function_as_parameters() {
@@ -24,4 +25,10 @@ fn _enum_as_initializer() {
     }
 
     let list_of_statuses: Vec<Status> = (0u32..20).map(Status::Value).collect();
+}
+
+fn _returning_closure() {
+    fn returns_closure() -> Box<dyn Fn(i32) -> i32> {
+        Box::new(|x| x + 1)
+    }
 }
