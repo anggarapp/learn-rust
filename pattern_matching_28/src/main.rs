@@ -14,7 +14,37 @@ fn main() {
     // _destruct_nested_enum_struct();
     // _destruct_struct_tuples();
     // _ignoring_nested();
-    _ignoring_remaining();
+    // _ignoring_remaining();
+    _match_guard();
+}
+
+fn _match_guard() {
+    let num = Some(4);
+
+    match num {
+        Some(x) if x % 2 == 0 => println!("The number {} is even", x),
+        Some(x) => println!("The number {} is odd", x),
+        None => (),
+    }
+
+    let x = Some(5);
+    let y = 10;
+
+    match x {
+        Some(50) => println!("Got 50"),
+        Some(n) if n == y => println!("Matched, n = {n}"),
+        _ => println!("Default case, x = {:?}", x),
+    }
+
+    println!("at the end: x = {:?}, y = {y}", x);
+
+    let pre_x = 4;
+    let pre_y = false;
+
+    match pre_x {
+        4 | 5 | 6 if pre_y => println!("yes"), //if bond on all params
+        _ => println!("no"),
+    }
 }
 
 fn _ignoring_remaining() {
