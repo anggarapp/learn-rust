@@ -1,7 +1,8 @@
 fn main() {
     // _associated_type_on_trait();
     // _generic_type_parameters_operator_overloading();
-    _calling_same_name_method();
+    // _calling_same_name_method();
+    _super_trait();
 }
 
 fn _associated_type_on_trait() {
@@ -118,4 +119,32 @@ fn _calling_same_name_method() {
 
     println!("A baby dog is called a {}", Dog::baby_name());
     println!("A baby dog is called a {}", <Dog as Animal>::baby_name());
+}
+
+fn _super_trait() {
+    use std::fmt;
+
+    trait OutlinePrint: fmt::Display {
+        fn outline_print(&self) {
+            let output = self.to_string();
+            let len = output.len();
+            println!("{}", "*".repeat(len + 4));
+            println!("*{}*", " ".repeat(len + 2));
+            println!("* {} *", output);
+            println!("*{}*", " ".repeat(len + 2));
+            println!("{}", "*".repeat(len + 4));
+        }
+    }
+
+    struct Point {
+        x: i32,
+        y: i32,
+    }
+    impl fmt::Display for Point {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+            write!(f, "({}, {})", self.x, self.y)
+        }
+    }
+
+    impl OutlinePrint for Point {}
 }
