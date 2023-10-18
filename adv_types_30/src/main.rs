@@ -1,5 +1,6 @@
 fn main() {
-    _type_aliases();
+    // _type_aliases();
+    _type_not_returning_anything();
 }
 
 fn _type_aliases() {
@@ -22,5 +23,13 @@ fn _type_aliases() {
 
         fn write_all(&mut self, buf: &[u8]) -> Result<()>;
         fn write_fmt(&mut self, fmt: fmt::Arguments) -> Result<()>;
+    }
+}
+
+fn _type_not_returning_anything() {
+    fn bar() -> ! {
+        loop {
+            print!("and ever ");
+        }
     }
 }
