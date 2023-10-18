@@ -2,7 +2,8 @@ fn main() {
     // _associated_type_on_trait();
     // _generic_type_parameters_operator_overloading();
     // _calling_same_name_method();
-    _super_trait();
+    // _super_trait();
+    _newtype_pattern();
 }
 
 fn _associated_type_on_trait() {
@@ -147,4 +148,19 @@ fn _super_trait() {
     }
 
     impl OutlinePrint for Point {}
+}
+
+fn _newtype_pattern() {
+    use std::fmt;
+
+    struct Wrapper(Vec<String>);
+
+    impl fmt::Display for Wrapper {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+            write!(f, "[{}]", self.0.join(", "))
+        }
+    }
+
+    let w = Wrapper(vec![String::from("hello"), String::from("world")]);
+    println!("w = {}", w);
 }
